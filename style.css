@@ -1,0 +1,90 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    min-height: 100vh;
+    padding: 40px;
+}
+
+/* Layout container */
+.container {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    gap: 30px;
+}
+
+/* Card layout */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Headings */
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+}
+
+/* Ordered list */
+.ordered h2 {
+    color: white;
+    background: blueviolet;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+ol {
+    margin-left: 20px;
+}
+
+ol li {
+    padding: 6px 0;
+}
+
+/* Unordered list */
+.unordered h2 {
+    color: #0a58ca;
+}
+
+ul {
+    list-style: square;
+    margin-left: 20px;
+}
+
+ul li {
+    padding: 6px 0;
+}
+
+/* Definition list */
+.definition h2 {
+    font-family: cursive;
+}
+
+dl dt {
+    font-weight: bold;
+    color: rgb(200, 30, 215);
+    margin-top: 12px;
+}
+
+dl dd {
+    margin-left: 20px;
+    color: #333;
+    font-style: italic;
+}
