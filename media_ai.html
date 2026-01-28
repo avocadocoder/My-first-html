@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Makes the page responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My New Zealand Trip</title>
+</head>
+
+<body style="margin:0; font-family: cursive; background-color:#f4f9fb;">
+
+    <!-- ================= HEADER SECTION ================= -->
+    <!-- Header with background color and centered text -->
+    <header style="background-color:aqua; padding:20px; text-align:center;">
+        <h1>My New Zealand Trip 🇳🇿</h1>
+        <p>A journey through lakes, mountains, and adventure</p>
+    </header>
+
+    <!-- ================= INTRO TEXT ================= -->
+    <!-- Wrapper div adds spacing and keeps content centered -->
+    <div style="padding:20px; max-width:1000px; margin:auto;">
+        <p>
+            My family decided to visit New Zealand after years of planning.
+            We spent around <strong>8–9 unforgettable days</strong> exploring nature,
+            trying adventure sports like <em>kayaking, ziplining, and gondola rides</em>,
+            and soaking in breathtaking views.
+        </p>
+
+        <p>
+            We stayed primarily in <strong>Queenstown</strong> for four nights,
+            surrounded by blue lakes, snowy peaks, and peaceful landscapes.
+        </p>
+    </div>
+
+    <!-- ================= IMAGE GALLERY ================= -->
+    <!-- Using flexbox to neatly arrange images -->
+    <section style="padding:20px;">
+        <h2 style="text-align:center;">Highlights from the Trip</h2>
+
+        <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+            <!-- Each image has a fixed width so layout stays clean -->
+            <figure>
+                <img src="https://hakatours.com/blog/wp-content/uploads/2017/02/lake-tekapo-51736_1280.jpg"
+                     alt="Lake Tekapo" width="300">
+                <figcaption style="text-align:center;">Lake Tekapo</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://www.newzealandtravelinsider.com/wp-content/uploads/2021/10/Mount-Cook-and-Lake-Pukaki.jpg"
+                     alt="Lake Pukaki" width="300">
+                <figcaption style="text-align:center;">Lake Pukaki & Mount Cook</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://media.cntraveler.com/photos/5a67511601a13140ff08e0b5/16:9/w_4992,h_2808,c_limit/GettyImages-602308886.jpg"
+                     alt="The Wanaka Tree" width="300">
+                <figcaption style="text-align:center;">The Wanaka Tree</figcaption>
+            </figure>
+
+            <figure>
+                <img src="https://images.goway.com/production/featured_images/iStock-496723557.jpg"
+                     alt="Queenstown" width="300">
+                <figcaption style="text-align:center;">Queenstown</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- ================= AUDIO SECTION ================= -->
+    <!-- Public domain audio so it works everywhere -->
+    <section style="padding:20px; text-align:center;">
+        <h2>Relaxing Travel Audio 🎵</h2>
+        <p>This adds mood to the page and demonstrates audio embedding.</p>
+
+        <audio controls>
+            <!-- This is a sample royalty-free audio file -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <!-- ================= VIDEO SECTION ================= -->
+    <!-- Embedded YouTube video to showcase New Zealand -->
+    <section style="padding:20px; text-align:center;">
+        <h2>Experience New Zealand 🎥</h2>
+        <p>Videos are great for landing pages because they increase engagement.</p>
+
+        <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/CvBfHwUxHIk"
+            title="New Zealand Travel Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <!-- Footer gives a natural ending to the page -->
+    <footer style="background-color:#222; color:white; padding:15px; text-align:center;">
+        <p>Made for learning purposes • HTML & Media Embedding</p>
+    </footer>
+
+</body>
+</html>
