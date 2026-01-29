@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details Form</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        form {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 6px;
+        }
+
+        .option-group {
+            margin-bottom: 15px;
+        }
+
+        .option-group label {
+            font-weight: normal;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Personal Details Form</h1>
+
+    <form>
+        <label>Name</label>
+        <input type="text" id="name">
+
+        <label>Contact Number</label>
+        <input type="password" id="contact">
+
+        <label>Gender</label>
+        <div class="option-group">
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+        </div>
+
+        <label>Favourite City</label>
+        <div class="option-group">
+            <label><input type="checkbox" value="New Delhi"> New Delhi</label>
+            <label><input type="checkbox" value="Mumbai"> Mumbai</label>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
