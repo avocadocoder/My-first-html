@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      height: 2000px; /* makes page scroll so we can test fixed & sticky */
+      font-family: Arial;
+    }
+
+    /* -----------------------------
+       STATIC (default)
+       -----------------------------
+       - This is normal flow
+       - top/left DO NOTHING here
+    */
+    .static-box {
+      background: lightgray;
+      padding: 10px;
+      margin: 10px;
+      top: 50px; /* ❌ ignored */
+    }
+
+    /* -----------------------------
+       RELATIVE
+       -----------------------------
+       - Moves relative to itself
+       - Keeps original space
+    */
+    .relative-box {
+      position: relative;
+      top: 20px;  /* ✅ moves visually */
+      left: 20px;
+      background: lightblue;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    /* -----------------------------
+       CONTAINER for ABSOLUTE
+       -----------------------------
+       - Important: makes absolute child
+         position relative to THIS box
+    */
+    .container {
+      position: relative; /* ⭐ KEY LINE */
+      height: 200px;
+      background: #eee;
+      margin: 20px;
+    }
+
+    /* -----------------------------
+       ABSOLUTE
+       -----------------------------
+       - Removed from normal flow
+       - Positions relative to nearest positioned parent
+    */
+    .absolute-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: orange;
+      padding: 10px;
+
+      opacity: 0.7; /* 👈 makes it slightly transparent */
+    }
+
+    /* -----------------------------
+       FIXED
+       -----------------------------
+       - Sticks to viewport (screen)
+       - Doesn't move on scroll
+    */
+    .fixed-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: tomato;
+      color: white;
+      padding: 15px;
+
+      opacity: 0.8; /* 👈 slightly transparent */
+    }
+
+    /* -----------------------------
+       STICKY
+       -----------------------------
+       - Acts normal, then sticks on scroll
+    */
+    .sticky-box {
+      position: sticky;
+      top: 0;
+      background: purple;
+      color: white;
+      padding: 10px;
+
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>CSS Position Demo 🚀</h2>
+
+  <!-- STATIC -->
+  <div class="static-box">
+    STATIC: I ignore top/left 😐
+  </div>
+
+  <!-- RELATIVE -->
+  <div class="relative-box">
+    RELATIVE: I move, but my space stays 👻
+  </div>
+
+  <!-- ABSOLUTE inside container -->
+  <div class="container">
+    CONTAINER (relative parent)
+    <div class="absolute-box">
+      ABSOLUTE: I stick to this container 📦
+    </div>
+  </div>
+
+  <!-- STICKY -->
+  <div class="sticky-box">
+    STICKY: I will stick when you scroll ⬇️
+  </div>
+
+  <p>Scroll down to see FIXED and STICKY in action...</p>
+
+  <!-- FIXED -->
+  <div class="fixed-box">
+    FIXED: I stay on screen 📺
+  </div>
+
+</body>
+</html>
