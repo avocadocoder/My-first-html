@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .box {
+        background-color: lightblue;
+        border: 1px solid black;
+        text-align: center;
+        padding: 20px;
+        margin: 2px;
+    }
+</style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href=
+
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src=
+
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
+    </script>
+</head>
+<body>
+    <h3>Equal Width Column Grid</h3>
+   <div class="container">
+
+        <!-- ROW 1: Equal columns -->
+        <div class="row">
+            <div class="col box">Equal</div>
+            <div class="col box">Equal</div>
+            <div class="col box">Equal</div>
+            <div class="col box">Equal</div>
+            <div class="col box">Equal</div>
+        </div>
+
+        <!-- ROW 2: Different widths -->
+        <div class="row">
+            <div class="col-6 box">col-6 (50%)</div>
+            <div class="col-3 box">col-3 (25%)</div>
+            <div class="col-3 box">col-3 (25%)</div>
+        </div>
+
+        <!-- ROW 3: Auto + fixed mix -->
+        <div class="row">
+            <div class="col box">Auto</div>
+            <div class="col-6 box">Fixed 6</div>
+            <div class="col box">Auto</div>
+        </div>
+
+</div>
+</body>
+</html>
