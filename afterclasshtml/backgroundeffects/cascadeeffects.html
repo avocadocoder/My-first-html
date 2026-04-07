@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Sunset</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+
+  background: 
+    linear-gradient(rgba(255,140,0,0.4), rgba(0,0,139,0.4)), 
+    url("https://img.freepik.com/premium-photo/sea-ocean-beach-sunset-sunrise-landscape-outdoor-water-wave-with-white-foam-beautiful-sunset-color_663265-4554.jpg") 
+    center/cover no-repeat;
+
+  animation: sunset 5s infinite alternate;
+}
+
+@keyframes sunset {
+  from { filter: brightness(130%); } 
+  to { filter: brightness(80%); }    
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  font-family: Arial, sans-serif;
+}
+
+p {
+  color: white;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+  <h1>Ocean at Sunset</h1>
+  <p>The sky slowly darkens as the sun sets over the ocean.</p>
+</body>
+</html>
