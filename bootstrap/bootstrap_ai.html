@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page Title -->
+    <title>Ocean Landing Page</title>
+
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styling -->
+    <style>
+        /* Hero section background styling */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
+            height: 90vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Overlay for better text readability */
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 50px;
+            border-radius: 10px;
+        }
+
+        /* Card image height */
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Footer styling */
+        footer {
+            background: #0d6efd;
+            color: white;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">OceanWorld</a>
+
+        <!-- Mobile toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu links -->
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+    <div class="hero-overlay">
+        <h1 class="display-4">Discover the Ocean</h1>
+        <p class="lead">Explore the beauty beneath the waves</p>
+        <a href="#" class="btn btn-light btn-lg">Get Started</a>
+    </div>
+</section>
+
+<!-- ================= FEATURES SECTION ================= -->
+<section class="container my-5">
+    <div class="row text-center">
+        <h2 class="mb-4">Ocean Highlights</h2>
+
+        <!-- Feature 1 -->
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1501959915551-4e8d30928317" class="img-fluid rounded mb-3" alt="Coral Reef">
+            <h4>Coral Reefs</h4>
+            <p>Colorful ecosystems full of marine life.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21" class="img-fluid rounded mb-3" alt="Waves">
+            <h4>Waves</h4>
+            <p>Powerful and calming ocean waves.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d" class="img-fluid rounded mb-3" alt="Sea Turtle">
+            <h4>Marine Life</h4>
+            <p>Discover fascinating ocean creatures.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CARD SECTION ================= -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Explore More</h2>
+    <div class="row">
+
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b" class="card-img-top" alt="Ocean Depth">
+                <div class="card-body">
+                    <h5 class="card-title">Deep Ocean</h5>
+                    <p class="card-text">Explore the mysterious depths of the sea.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98" class="card-img-top" alt="Beach">
+                <div class="card-body">
+                    <h5 class="card-title">Beaches</h5>
+                    <p class="card-text">Relax on beautiful sandy shores.</p>
+                    <a href="#" class="btn btn-primary">Explore</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" class="card-img-top" alt="Dolphins">
+                <div class="card-body">
+                    <h5 class="card-title">Dolphins</h5>
+                    <p class="card-text">Meet intelligent and playful sea animals.</p>
+                    <a href="#" class="btn btn-primary">Discover</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CAROUSEL ================= -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Ocean Gallery</h2>
+
+    <!-- Bootstrap Carousel -->
+    <div id="oceanCarousel" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-inner">
+
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="d-block w-100" alt="Ocean View">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206" class="d-block w-100" alt="Sea">
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21" class="d-block w-100" alt="Waves">
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#oceanCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#oceanCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="text-center">
+    <div class="container">
+        <p>© 2026 OceanWorld | Built with Bootstrap</p>
+    </div>
+</footer>
+
+<!-- ================= BOOTSTRAP JS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
