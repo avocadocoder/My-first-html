@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+div.relative {
+    position: relative;
+    left: 30px;
+    border: 3px solid #73AD21;
+    background: rgb(0, 13, 128);
+    color: white;
+    padding: 10px;
+}
+
+div.fixed {
+    position: fixed;
+    left: 30px;
+    border: 3px solid #2821ad; 
+    background: rgb(11, 128, 0);
+    color: white;
+    padding: 10px;
+}
+
+div.absolute {
+    position: absolute;
+    left: 30px;
+    border: 3px solid #73AD21;
+    background: rgb(128, 0, 0);
+    color: white;
+    padding: 10px;
+}
+
+div.static {
+    position: static;
+    left: 30px;
+    border: 3px solid #73AD21;
+    background: rgb(232, 35, 97);
+    color: white;
+    padding: 10px;
+}
+.sticky-box {
+      position: sticky;
+      top: 0;
+      border: 3px solid;
+      background: purple;
+      color: white;
+      padding: 20px;
+
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Positions</h2>
+<p>An element with position: relative; is positioned relative to its normal position:</p>
+<div class="relative">
+This div element has position: relative;
+</div><br><br>
+
+<div class="fixed">
+This div element has position: fixed;
+</div><br><br>
+
+<div class="absolute">
+This div element has position: absolute;
+</div><br><br>
+
+<div class="static">
+This div element has position: static;
+</div>
+
+<div class="sticky-box">
+    STICKY: I will stick when you scroll
+</div>
+
+<p>In web development, positioning refers to how elements are placed on a page using CSS.</p>
+<p>The most common values are static, relative, absolute, fixed, and sticky.</p>
+<p>For example, relative lets you move an element slightly from its normal position, while absolute positions it based on its nearest positioned parent.</p>
+<p>Fixed keeps an element locked to the screen (like a navbar), and sticky behaves like a mix of relative and fixed depending on scroll.</p>
+<p>Understanding positioning is key to building layouts that feel structured and responsive.</p>
+
+<img src="https://images.pexels.com/photos/29445973/pexels-photo-29445973.jpeg?cs=srgb&dl=pexels-peaky-29445973.jpg&fm=jpg" width="300px">
+
+</body>
+</html>
