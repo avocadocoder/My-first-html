@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Example</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        h1 {
+            color: green;
+        }
+
+        #a1, #a4 {
+            color: white;
+            background: olive;
+        }
+        #a2, #a5 {
+            color: white;
+            background: maroon;
+        }
+        #a3, #a6 {
+            color: white;
+            background: fuchsia;
+        }
+
+        .box {
+            padding: 20px;
+            text-align: center;
+            border: 2px solid white;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <h1>Unequal Area Grids</h1>
+
+
+    <div class="row">
+        <div id="a1" class="col-sm-3 box">3 columns</div>
+        <div id="a2" class="col-sm-4 box">4 columns</div>
+        <div id="a3" class="col-sm-5 box">5 columns</div>
+    </div>
+
+    <div class="row">
+        <div id="a4" class="col-sm-2 box">2 columns</div>
+        <div id="a5" class="col-sm-6 box">6 columns</div>
+        <div id="a6" class="col-sm-4 box">4 columns</div>
+    </div>
+</div>
+</body>
+</html>
