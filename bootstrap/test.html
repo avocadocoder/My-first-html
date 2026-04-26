@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href=
+
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
+    </script>
+
+    <style>
+        /* Card styling */
+.profile-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.profile-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Profile image */
+.profile-img {
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Zoom image on hover */
+.profile-card:hover .profile-img {
+  transform: scale(1.05);
+}
+
+/* Button styling */
+.profile-card .btn {
+  border-radius: 20px;
+}
+
+/* Typography tweaks */
+.card-title {
+  margin-top: 10px;
+  font-size: 1.3rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">About Us</h2>
+  <p class="text-center mb-5 text-muted">
+    We help students fall in love with coding through interactive lessons, real-life projects, and expert mentorship.
+  </p>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      
+      <div class="card profile-card text-center">
+        <img 
+          class="card-img-top profile-img" 
+          src="https://static.wikia.nocookie.net/avatar/images/2/21/Aang_looking_innocent.png" 
+          alt="Profile Image"
+        >
+        
+        <div class="card-body">
+          <h5 class="card-title fw-bold">User Name</h5>
+          <p class="card-text text-muted">Passionate about programming.</p>
+          <a href="#" class="btn btn-primary btn-sm px-4">See Profile</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h2 class="text-center mt-5 fw-bold">Class Profile</h2>
+</div>
+
+
+</body>
+</html>
