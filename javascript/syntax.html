@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="myH"></h1>
+    <p id="myP"></p>
+
+    <button id="myB" onclick="ChangeText()">Click Me</button>
+    <button id="myB2" onclick="ChangeColor()">Don't Click</button>
+
+    <script>
+        //My heading:
+        document.getElementById("myH"). innerHTML="JavaScript Comments";
+
+        //My paragraph:
+        document.getElementById("myP"). innerHTML="My first paragraph.";
+
+        //My button:
+        
+       function ChangeText(){
+        document.getElementById("myB"). innerHTML="My first click";
+        document.body.style.backgroundColor="lightblue";
+       }
+
+       function ChangeColor (){
+        document.getElementById("myB2"). innerHTML="My second click";
+        document.body.style.backgroundColor="lightpink";
+       }
+       
+
+
+    </script>
+
+    
+
+</body>
+</html>
