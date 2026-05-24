@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflection & Refraction</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#04111f;
+    color:white;
+}
+
+canvas{
+    display:block;
+}
+
+.panel{
+    position:absolute;
+    top:20px;
+    left:20px;
+    width:360px;
+    background:rgba(0,0,0,0.65);
+    padding:20px;
+    border-radius:18px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+h1{
+    color:#00e5ff;
+    margin-bottom:15px;
+}
+
+.desc{
+    color:#d0d7de;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.highlight{
+    color:#00e5ff;
+    font-weight:bold;
+}
+
+.sliderBox{
+    margin-top:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+input[type=range]{
+    width:100%;
+}
+
+.value{
+    margin-top:10px;
+    font-size:20px;
+    color:#00e5ff;
+}
+
+.info{
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(0,229,255,0.08);
+    line-height:1.7;
+}
+
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+    <h1>🌊 Light on Water Surface</h1>
+
+    <div class="desc">
+        When light falls on water:
+        <br><br>
+
+        • Some light gets <span class="highlight">Reflected</span>
+        <br>
+
+        • Some light enters water and gets
+        <span class="highlight">Refracted</span>
+
+        <br><br>
+
+        Move the slider to change the
+        <span class="highlight">Angle of Incidence</span>.
+    </div>
+
+    <div class="sliderBox">
+        <label>Angle of Incidence</label>
+
+        <input
+            id="angleSlider"
+            type="range"
+            min="5"
+            max="70"
+            value="35"
+        >
+
+        <div class="value" id="angleValue">
+            35°
+        </div>
+    </div>
+
+    <div class="info">
+        Reflection Angle = Incidence Angle
+        <br><br>
+
+        Refraction bends light because water slows light down.
+    </div>
+
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+
+////////////////////////////////////////////////////////
+// CANVAS
+////////////////////////////////////////////////////////
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+////////////////////////////////////////////////////////
+// UI
+////////////////////////////////////////////////////////
+
+const slider = document.getElementById("angleSlider");
+const angleValue = document.getElementById("angleValue");
+
+let incidenceAngle = parseFloat(slider.value);
+
+slider.addEventListener("input",()=>{
+
+    incidenceAngle = parseFloat(slider.value);
+
+    angleValue.innerText = incidenceAngle + "°";
+});
+
+////////////////////////////////////////////////////////
+// CONSTANTS
+////////////////////////////////////////////////////////
+
+const AIR = 1.0;
+const WATER = 1.33;
+
+////////////////////////////////////////////////////////
+// MAIN LOOP
+////////////////////////////////////////////////////////
+
+let waveOffset = 0;
+let pulse = 0;
+
+function animate(){
+
+    requestAnimationFrame(animate);
+
+    waveOffset += 0.02;
+    pulse += 0.015;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    drawBackground();
+
+    ////////////////////////////////////////////////////
+    // WATER SURFACE
+    ////////////////////////////////////////////////////
+
+    const surfaceY = canvas.height * 0.58;
+
+    drawWater(surfaceY);
+
+    ////////////////////////////////////////////////////
+    // CENTER POINT
+    ////////////////////////////////////////////////////
+
+    const cx = canvas.width * 0.68;
+    const cy = surfaceY;
+
+    ////////////////////////////////////////////////////
+    // NORMAL
+    ////////////////////////////////////////////////////
+
+    drawNormal(cx,cy);
+
+    ////////////////////////////////////////////////////
+    // ANGLES
+    ////////////////////////////////////////////////////
+
+    const incidentRad = incidenceAngle * Math.PI / 180;
+
+    ////////////////////////////////////////////////////
+    // REFRACTION USING SNELL'S LAW
+    ////////////////////////////////////////////////////
+
+    const refractedRad = Math.asin(
+        (AIR / WATER) * Math.sin(incidentRad)
+    );
+
+    ////////////////////////////////////////////////////
+    // INCIDENT RAY
+    ////////////////////////////////////////////////////
+
+    const rayLength = 340;
+
+    const incidentStart = {
+
+        x: cx - Math.sin(incidentRad) * rayLength,
+
+        y: cy - Math.cos(incidentRad) * rayLength
+    };
+
+    ////////////////////////////////////////////////////
+    // REFLECTED RAY
+    ////////////////////////////////////////////////////
+
+    const reflectedEnd = {
+
+        x: cx + Math.sin(incidentRad) * rayLength,
+
+        y: cy - Math.cos(incidentRad) * rayLength
+    };
+
+    ////////////////////////////////////////////////////
+    // REFRACTED RAY
+    ////////////////////////////////////////////////////
+
+    const refractedEnd = {
+
+        x: cx + Math.sin(refractedRad) * rayLength,
+
+        y: cy + Math.cos(refractedRad) * rayLength
+    };
+
+    ////////////////////////////////////////////////////
+    // DRAW RAYS
+    ////////////////////////////////////////////////////
+
+    drawLaser(
+        incidentStart,
+        {x:cx,y:cy},
+        "#00d9ff"
+    );
+
+    drawLaser(
+        {x:cx,y:cy},
+        reflectedEnd,
+        "#00ff88"
+    );
+
+    drawLaser(
+        {x:cx,y:cy},
+        refractedEnd,
+        "#ffae00"
+    );
+
+    ////////////////////////////////////////////////////
+    // PARTICLES
+    ////////////////////////////////////////////////////
+
+    beamParticles(
+        incidentStart,
+        {x:cx,y:cy},
+        "#00d9ff"
+    );
+
+    beamParticles(
+        {x:cx,y:cy},
+        reflectedEnd,
+        "#00ff88"
+    );
+
+    beamParticles(
+        {x:cx,y:cy},
+        refractedEnd,
+        "#ffae00"
+    );
+
+    ////////////////////////////////////////////////////
+    // ANGLE ARCS
+    ////////////////////////////////////////////////////
+
+    drawArc(
+        cx,
+        cy,
+        -Math.PI/2,
+        -Math.PI/2 - incidentRad,
+        "#00d9ff"
+    );
+
+    drawArc(
+        cx,
+        cy,
+        -Math.PI/2,
+        -Math.PI/2 + incidentRad,
+        "#00ff88"
+    );
+
+    drawArc(
+        cx,
+        cy,
+        Math.PI/2,
+        Math.PI/2 - refractedRad,
+        "#ffae00"
+    );
+
+    ////////////////////////////////////////////////////
+    // LABELS
+    ////////////////////////////////////////////////////
+
+    drawLabels(
+        cx,
+        cy,
+        refractedRad
+    );
+}
+
+////////////////////////////////////////////////////////
+// BACKGROUND
+////////////////////////////////////////////////////////
+
+function drawBackground(){
+
+    const g = ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        canvas.height
+    );
+
+    g.addColorStop(0,"#071426");
+    g.addColorStop(1,"#02070d");
+
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+}
+
+////////////////////////////////////////////////////////
+// WATER
+////////////////////////////////////////////////////////
+
+function drawWater(surfaceY){
+
+    ////////////////////////////////////////////////////
+    // WATER BODY
+    ////////////////////////////////////////////////////
+
+    const waterGradient = ctx.createLinearGradient(
+        0,
+        surfaceY,
+        0,
+        canvas.height
+    );
+
+    waterGradient.addColorStop(0,"rgba(0,180,255,0.25)");
+    waterGradient.addColorStop(1,"rgba(0,80,180,0.55)");
+
+    ctx.fillStyle = waterGradient;
+
+    ctx.fillRect(
+        0,
+        surfaceY,
+        canvas.width,
+        canvas.height
+    );
+
+    ////////////////////////////////////////////////////
+    // WAVES
+    ////////////////////////////////////////////////////
+
+    ctx.beginPath();
+
+    for(let x=0;x<canvas.width;x++){
+
+        const y =
+            surfaceY +
+            Math.sin(x * 0.02 + waveOffset) * 6;
+
+        if(x===0){
+            ctx.moveTo(x,y);
+        }else{
+            ctx.lineTo(x,y);
+        }
+    }
+
+    ctx.strokeStyle = "#7fe7ff";
+    ctx.lineWidth = 3;
+
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = "#7fe7ff";
+
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+
+    ////////////////////////////////////////////////////
+    // LABEL
+    ////////////////////////////////////////////////////
+
+    ctx.fillStyle = "white";
+    ctx.font = "22px Arial";
+
+    ctx.fillText(
+        "Water Surface",
+        80,
+        surfaceY - 20
+    );
+}
+
+////////////////////////////////////////////////////////
+// NORMAL
+////////////////////////////////////////////////////////
+
+function drawNormal(cx,cy){
+
+    ctx.beginPath();
+
+    ctx.moveTo(cx,cy-260);
+    ctx.lineTo(cx,cy+260);
+
+    ctx.setLineDash([10,10]);
+
+    ctx.strokeStyle = "rgba(255,255,255,0.55)";
+    ctx.lineWidth = 2;
+
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+
+    ctx.fillText(
+        "Normal",
+        cx + 15,
+        cy - 220
+    );
+}
+
+////////////////////////////////////////////////////////
+// LASERS
+////////////////////////////////////////////////////////
+
+function drawLaser(start,end,color){
+
+    ctx.beginPath();
+
+    ctx.moveTo(start.x,start.y);
+    ctx.lineTo(end.x,end.y);
+
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = color;
+
+    ctx.shadowBlur = 25;
+    ctx.shadowColor = color;
+
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+}
+
+////////////////////////////////////////////////////////
+// PARTICLES
+////////////////////////////////////////////////////////
+
+function beamParticles(start,end,color){
+
+    const count = 22;
+
+    for(let i=0;i<count;i++){
+
+        const t = ((i/count)+pulse)%1;
+
+        const x = start.x + (end.x-start.x)*t;
+        const y = start.y + (end.y-start.y)*t;
+
+        ctx.beginPath();
+
+        ctx.arc(x,y,3,0,Math.PI*2);
+
+        ctx.fillStyle = color;
+
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = color;
+
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+    }
+}
+
+////////////////////////////////////////////////////////
+// ARC
+////////////////////////////////////////////////////////
+
+function drawArc(cx,cy,start,end,color){
+
+    ctx.beginPath();
+
+    ctx.arc(
+        cx,
+        cy,
+        70,
+        start,
+        end,
+        end < start
+    );
+
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = color;
+
+    ctx.stroke();
+}
+
+////////////////////////////////////////////////////////
+// LABELS
+////////////////////////////////////////////////////////
+
+function drawLabels(cx,cy,refractedRad){
+
+    ctx.font = "20px Arial";
+
+    ////////////////////////////////////////////////////
+    // INCIDENT
+    ////////////////////////////////////////////////////
+
+    ctx.fillStyle = "#00d9ff";
+
+    ctx.fillText(
+        "Incident Ray",
+        cx - 260,
+        cy - 240
+    );
+
+    ctx.fillText(
+        incidenceAngle + "°",
+        cx - 80,
+        cy - 90
+    );
+
+    ////////////////////////////////////////////////////
+    // REFLECTED
+    ////////////////////////////////////////////////////
+
+    ctx.fillStyle = "#00ff88";
+
+    ctx.fillText(
+        "Reflected Ray",
+        cx + 110,
+        cy - 240
+    );
+
+    ctx.fillText(
+        incidenceAngle + "°",
+        cx + 40,
+        cy - 90
+    );
+
+    ////////////////////////////////////////////////////
+    // REFRACTED
+    ////////////////////////////////////////////////////
+
+    ctx.fillStyle = "#ffae00";
+
+    const refractedDeg =
+        (refractedRad * 180 / Math.PI).toFixed(1);
+
+    ctx.fillText(
+        "Refracted Ray",
+        cx + 120,
+        cy + 190
+    );
+
+    ctx.fillText(
+        refractedDeg + "°",
+        cx + 50,
+        cy + 95
+    );
+}
+
+////////////////////////////////////////////////////////
+// START
+////////////////////////////////////////////////////////
+
+animate();
+
+</script>
+
+</body>
+</html>
