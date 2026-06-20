@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+
+    <style>
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+}
+
+.container {
+    width: 95%;
+    max-width: 1000px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.stat {
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+button {
+    background: #3b82f6;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.card {
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform .6s;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 12px;
+
+    backface-visibility: hidden;
+}
+
+.front {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: rotateY(180deg);
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.back {
+    background: linear-gradient(
+        45deg,
+        #3b82f6,
+        #8b5cf6
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.matched {
+    pointer-events: none;
+    opacity: .8;
+}
+
+@media(max-width:768px) {
+
+    .game-board {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .card {
+        height: 120px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Memory Match</h1>
+
+            <div class="stats">
+                <div class="stat">
+                    Moves: <span id="moves">0</span>
+                </div>
+
+                <div class="stat">
+                    Matches: <span id="matches">0</span>
+                </div>
+            </div>
+
+            <button id="restartBtn">
+                Restart Game
+            </button>
+        </header>
+
+        <div class="game-board" id="gameBoard"></div>
+
+    </div>
+
+    <script>
+        const gameBoard = document.getElementById("gameBoard");
+const movesDisplay = document.getElementById("moves");
+const matchesDisplay = document.getElementById("matches");
+const restartBtn = document.getElementById("restartBtn");
+
+const images = [
+    "https://static.wikia.nocookie.net/characters/images/4/42/Mickey_Mouse_%28character%29.png/revision/latest/thumbnail/width/360/height/450?cb=20230508142819",
+    "https://static.wikia.nocookie.net/mickey-and-friends/images/b/ba/Donald_duck_.jpg/revision/latest/scale-to-width-down/1000?cb=20250223082251",
+    "https://chuckjones.com/wp-content/uploads/bugs-bunny-chuck-jones.png",
+    "https://upload.wikimedia.org/wikipedia/en/d/d2/Stitch_%28Lilo_%26_Stitch%29.svg",
+    "https://i.pinimg.com/originals/4c/6f/1e/4c6f1efc093bb0ef791cfd52ea045e99.jpg",
+    "https://static.wikia.nocookie.net/disney/images/1/13/Pluto_the_pup.png/revision/latest/thumbnail/width/360/height/360?cb=20240613035106"
+];
+
+let cards = [];
+let flippedCards = [];
+
+let moves = 0;
+let matches = 0;
+let lockBoard = false;
+
+function startGame() {
+
+    moves = 0;
+    matches = 0;
+
+    movesDisplay.textContent = moves;
+    matchesDisplay.textContent = matches;
+
+    gameBoard.innerHTML = "";
+
+    cards = [...images, ...images];
+
+    shuffle(cards);
+
+    cards.forEach(image => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("card");
+
+        card.innerHTML = `
+            <div class="front">
+                <img src="${image}" alt="character">
+            </div>
+
+            <div class="back">
+                ?
+            </div>
+        `;
+
+        card.dataset.image = image;
+
+        card.addEventListener("click", flipCard);
+
+        gameBoard.appendChild(card);
+
+    });
+
+}
+
+function shuffle(array) {
+
+    for (let i = array.length - 1; i > 0; i--) {
+
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [array[i], array[j]] =
+        [array[j], array[i]];
+    }
+}
+
+function flipCard() {
+
+    if (lockBoard) return;
+
+    if (this === flippedCards[0]) return;
+
+    this.classList.add("flip");
+
+    flippedCards.push(this);
+
+    if (flippedCards.length === 2) {
+
+        moves++;
+
+        movesDisplay.textContent = moves;
+
+        checkMatch();
+    }
+}
+
+function checkMatch() {
+
+    const firstCard = flippedCards[0];
+    const secondCard = flippedCards[1];
+
+    const match =
+        firstCard.dataset.image ===
+        secondCard.dataset.image;
+
+    if (match) {
+
+        firstCard.classList.add("matched");
+        secondCard.classList.add("matched");
+
+        matches++;
+
+        matchesDisplay.textContent = matches;
+
+        flippedCards = [];
+
+        if (matches === images.length) {
+
+            setTimeout(() => {
+
+                alert(
+                    `You won in ${moves} moves!`
+                );
+
+            }, 500);
+        }
+
+    } else {
+
+        lockBoard = true;
+
+        setTimeout(() => {
+
+            firstCard.classList.remove("flip");
+            secondCard.classList.remove("flip");
+
+            flippedCards = [];
+
+            lockBoard = false;
+
+        }, 1000);
+    }
+}
+
+restartBtn.addEventListener(
+    "click",
+    startGame
+);
+
+startGame();
+    </script>
+
+</body>
+</html>
