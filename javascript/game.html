@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Game Profile</h1>
+    <button onclick="showProfile()">Show Profile</button>
+
+    <div> Name: <span id="name"></span></div>
+    <div>Score: <span id="score"></span></div>
+    <div>TopScore: <span id="record"></span></div>
+    <div>Rank: <span id="rank"></span></div>
+    <div>Greeting: <span id="greeting"></span></div>
+    <div>Stars: <span id="stars"></span></div>
+    <div>Bonus Level: <span id="bonus"></span></div>
+    <div>Team Name: <span id="team"></span></div>
+
+    <script>
+        function showProfile() {
+            // Variables
+            let name      = "Alex";
+            let myScore   = 75;
+            let highscore = 100;
+            let bonus     = null;
+            let team;
+
+            //Comparison Operator
+            let isTopScore = myScore == highScore;
+
+            // if / else - Rank
+            let rank;
+            if (myScore >= 80){
+                rank = "Gold";
+            } else if (myScore >= 50) {
+                rank = "Silver";
+            } else {
+                rank = "Bronze";
+            }
+        }
+    </script>
+</body>
+</html>
