@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Year</h3>
+    <p id="year"></p>
+
+    <h3>Month</h3>
+    <p id="month"></p>
+
+    <h3>Hour</h3>
+    <p id="hour"></p>
+
+    <script>
+        let date = new Date();
+        let Year = date.getFullYear();
+        let month = (date.getMonth() +  1);
+        let Hour = date.getHours()
+    
+        
+        if (month == 12) {
+           message = "December - Merry Christmas"
+        } else if (month == 11) {
+            message = "November - Winter Starts"
+        } else if (month == 10) {
+            message = "October - Happy Halloween, may you be forever haunted"
+        } else if (month == 9) {
+            message = "September - Random month"
+        } else if (month == 8) {
+            message = "August - The end of summer"
+        } else if (month == 7) {
+            message = "July - Peak summer"
+        } else if (month == 6) {
+            message = "June - Halfway into the year"
+        } else if (month == 5) {
+            message = "May - May the odds be ever in your favour"
+        } else if (month == 4) {
+            message = "April - APRIL FOOL'S"
+        } else if (month == 3) {
+            message = "March - The end of winter..."
+        } else if (month == 2) {
+            message = "February - Happy February"
+        } else if (month == 1) {
+            message = "January - HAPPY NEW YEAR!"
+        }
+
+        document.getElementById("month").innerHTML = message + Year;
+        document.getElementById("year").innerHTML = Year;
+        document.getElementById("hour").innerHTML = Hour;
+
+
+    </script>
+</body>
+</html>
